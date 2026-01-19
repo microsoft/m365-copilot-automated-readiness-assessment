@@ -1,0 +1,46 @@
+"""
+Microsoft Defender for Cloud Apps for Office 365 - Defender & Security Recommendation
+"""
+from new_recommendation import new_recommendation
+from friendly_names import get_friendly_sku_name
+
+def get_recommendation(sku_name, status="Success", client=None, defender_client=None, defender_insights=None):
+    """
+    Microsoft Defender for Cloud Apps for Office 365 provides cloud app security and threat protection.
+    """
+    feature_name = "Microsoft Defender for Cloud Apps for Office 365"
+    friendly_sku = get_friendly_sku_name(sku_name)
+    
+    if status == "Success":
+        observation = f"{feature_name} is active in {friendly_sku}, protecting Copilot workloads"
+        recommendation = ""
+        
+        # Enrich with OAuth/cloud app risk from pre-computed insights
+        if defender_insights and defender_insights.available:
+            if defender_insights.has_oauth_risks():
+                observation += ". " + ", ".join(defender_insights.oauth_metrics)
+                recommendation = defender_insights.oauth_recommendation
+            else:
+                # Clean status - no OAuth risks
+                observation += ". No high-risk OAuth apps detected"
+        
+        return new_recommendation(
+            service="Defender",
+            feature=feature_name,
+            observation=observation,
+            recommendation=recommendation,
+            link_text="Cloud Apps",
+            link_url="https://learn.microsoft.com/defender-cloud-apps/",
+            status=status
+        )
+    
+    return new_recommendation(
+        service="Defender",
+        feature=feature_name,
+        observation=f"{feature_name} is {status} in {friendly_sku}",
+        recommendation=f"Enable {feature_name} to gain visibility and control over your cloud apps, detect and respond to cyber threats, and protect your data.",
+        link_text="Defender for Cloud Apps",
+        link_url="https://learn.microsoft.com/defender-cloud-apps/",
+        priority="High",
+        status=status
+    )
