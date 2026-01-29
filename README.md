@@ -69,7 +69,7 @@ There are multiple design area evaluations implemented in Automated Readiness As
 
 The assessment generates detailed reports in both CSV and Excel formats, providing a comprehensive view of your Microsoft 365 Copilot readiness across all evaluated service areas:
 
-![Assessment Report Output](Media/ReportOutput.png)
+![Assessment Report Output](Media/ReportOutput2.png)
 
 The report includes:
 - **Service Area**: M365, Entra, Defender, Purview, Power Platform, or Copilot Studio
