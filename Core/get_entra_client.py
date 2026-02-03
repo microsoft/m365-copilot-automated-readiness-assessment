@@ -8,7 +8,7 @@ Used for enhanced Entra observations focused on Copilot adoption.
 import asyncio
 import httpx
 from azure.core.exceptions import HttpResponseError
-from spinner import get_timestamp, _stdout_lock
+from .spinner import get_timestamp, _stdout_lock
 from datetime import datetime, timedelta
 
 def _get_attr(obj, attr_name, default=''):
@@ -27,7 +27,7 @@ def _get_attr(obj, attr_name, default=''):
 
 async def _get_graph_http_client():
     """Get HTTP client for Microsoft Graph API with bearer token"""
-    from get_graph_client import get_shared_credential
+    from .get_graph_client import get_shared_credential
     
     credential = get_shared_credential()
     token = credential.get_token('https://graph.microsoft.com/.default')
@@ -262,7 +262,7 @@ async def get_entra_client(graph_client, tenant_id=None):
     client_obj = EntraClient()
     
     import sys
-    from spinner import _stdout_lock, get_timestamp
+    from .spinner import _stdout_lock, get_timestamp
     
     # Show initial progress bar
     with _stdout_lock:

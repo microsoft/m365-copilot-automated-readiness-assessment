@@ -1,8 +1,8 @@
 """
 SharePoint (Plan 2) - M365 Copilot & Agent Adoption Recommendation
 """
-from new_recommendation import new_recommendation
-from friendly_names import get_friendly_sku_name
+from Core.new_recommendation import new_recommendation
+from Core.friendly_names import get_friendly_sku_name
 from azure.core.exceptions import HttpResponseError
 
 async def get_deployment_status(client):

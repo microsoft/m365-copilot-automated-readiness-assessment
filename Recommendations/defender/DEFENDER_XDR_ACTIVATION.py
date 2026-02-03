@@ -1,7 +1,7 @@
 """
 Microsoft Defender XDR Activation - Prerequisite Recommendation
 """
-from new_recommendation import new_recommendation
+from Core.new_recommendation import new_recommendation
 
 def get_recommendation(defender_client=None, defender_plans=None):
     """

@@ -1,7 +1,7 @@
 import asyncio
-from get_recommendation import get_recommendation
-from service_categorization import determine_service_type
-from spinner import get_timestamp, _stdout_lock
+from .get_recommendation import get_recommendation
+from .service_categorization import determine_service_type
+from .spinner import get_timestamp, _stdout_lock
 from azure.core.exceptions import HttpResponseError
 
 async def fetch_entra_data(client):
@@ -105,7 +105,7 @@ async def get_entra_info(client, services_and_licenses=None, entra_client=None):
     
     # Create/ensure entra_client is available BEFORE generating recommendations
     if not entra_client:
-        from get_entra_client import get_entra_client
+        from .get_entra_client import get_entra_client
         tenant_id = entra_info.get('tenant_id')
         entra_client = await get_entra_client(client, tenant_id)
     

@@ -1,8 +1,8 @@
 """Initialization and setup functions for orchestrator."""
 
-from get_graph_client import get_graph_client
-from services_and_licenses import ServicesAndLicenses
-from spinner import get_timestamp
+from .get_graph_client import get_graph_client
+from .services_and_licenses import ServicesAndLicenses
+from .spinner import get_timestamp
 
 
 async def load_modules_and_analyze(tenant_id, service_config):
@@ -13,7 +13,7 @@ async def load_modules_and_analyze(tenant_id, service_config):
         service_config: Dict with run_* flags from validate_and_prepare_services()
     """
     # Initialize progress bar with actual count
-    from module_loader import start_module_loading
+    from .module_loader import start_module_loading
     start_module_loading(service_config['services_to_load'])
     
     # Pre-load recommendation modules for selected services
@@ -31,7 +31,7 @@ async def load_modules_and_analyze(tenant_id, service_config):
         import Recommendations.copilot_studio
     
     # Show feature analysis after modules are loaded
-    from check_all_service_plans import analyze_service_plans
+    from .check_all_service_plans import analyze_service_plans
     await analyze_service_plans(tenant_id, service_config['services'])
     
     # Print start message after modules are loaded

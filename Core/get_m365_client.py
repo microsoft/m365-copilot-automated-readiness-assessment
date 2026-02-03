@@ -8,7 +8,7 @@ import asyncio
 import csv
 import io
 from azure.core.exceptions import HttpResponseError
-from spinner import get_timestamp, _stdout_lock
+from .spinner import get_timestamp, _stdout_lock
 from datetime import datetime, timedelta
 
 async def get_m365_client(graph_client):
@@ -98,7 +98,7 @@ async def get_m365_client(graph_client):
         
         # Execute all API calls in parallel with progress bar
         import sys
-        from spinner import _stdout_lock, get_timestamp
+        from .spinner import _stdout_lock, get_timestamp
         
         # Show initial progress bar
         with _stdout_lock:

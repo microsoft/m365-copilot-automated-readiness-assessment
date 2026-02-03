@@ -2,8 +2,8 @@
 Conditional Access (Entra ID P1) - Enhanced with Policy Configuration Analysis
 Provides license check + CA policy coverage, MFA enforcement, and Copilot-specific targeting analysis.
 """
-from new_recommendation import new_recommendation
-from friendly_names import get_friendly_sku_name
+from Core.new_recommendation import new_recommendation
+from Core.friendly_names import get_friendly_sku_name
 
 def get_recommendation(sku_name, status="Success", client=None, entra_insights=None):
     """

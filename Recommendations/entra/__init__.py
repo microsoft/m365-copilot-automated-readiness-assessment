@@ -6,7 +6,7 @@ import os
 import importlib
 import sys
 from pathlib import Path
-from spinner import get_timestamp, _stdout_lock
+from Core.spinner import get_timestamp, _stdout_lock
 
 # Get all .py files in this directory except __init__.py and helper modules
 current_dir = Path(__file__).parent
@@ -20,7 +20,7 @@ for file_path in current_dir.glob("*.py"):
         recommendation_modules[module_name.upper()] = module.get_recommendation
 
 # Update progress bar
-from module_loader import get_progress_tracker
+from Core.module_loader import get_progress_tracker
 get_progress_tracker().update('Entra', len(recommendation_modules))
 
 def get_feature_recommendation(feature_name, sku_name, status="Success", client=None, entra_insights=None):
@@ -83,9 +83,9 @@ def get_feature_recommendation(feature_name, sku_name, status="Success", client=
         return result
     
     # Fallback for features without specific recommendations
-    from friendly_names import get_friendly_plan_name
-    from new_recommendation import new_recommendation
-    from friendly_names import get_friendly_sku_name
+    from Core.friendly_names import get_friendly_plan_name
+    from Core.new_recommendation import new_recommendation
+    from Core.friendly_names import get_friendly_sku_name
     
     friendly_name = get_friendly_plan_name(feature_name)
     friendly_sku = get_friendly_sku_name(sku_name)

@@ -1,10 +1,10 @@
 import asyncio
-from get_power_platform_client import get_power_platform_client
+from .get_power_platform_client import get_power_platform_client
 from azure.core.exceptions import HttpResponseError, ClientAuthenticationError
-from get_recommendation import get_recommendation
+from .get_recommendation import get_recommendation
 import sys
-from spinner import get_timestamp, _stdout_lock
-from service_categorization import determine_service_type
+from .spinner import get_timestamp, _stdout_lock
+from .service_categorization import determine_service_type
 
 async def fetch_power_platform_licenses(client):
     """Fetch license data to check if Power Platform is licensed"""
@@ -106,7 +106,7 @@ async def get_power_platform_info(client, services_and_licenses=None, pp_client=
     
     # PRE-COMPUTE Power Platform insights ONCE (instead of duplicating in every recommendation)
     # This extracts from already-cached pp_client data (no API calls)
-    from get_power_platform_client import extract_pp_insights_from_client
+    from .get_power_platform_client import extract_pp_insights_from_client
     pp_insights = extract_pp_insights_from_client(pp_client) if pp_client else None
     
     # Check for all service plans and create recommendations (blank for Success)

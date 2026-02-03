@@ -2,7 +2,7 @@
 Microsoft Defender for Endpoint - Device Onboarding Status
 Checks if Defender for Endpoint API is accessible and devices are onboarded
 """
-from new_recommendation import new_recommendation
+from Core.new_recommendation import new_recommendation
 
 
 async def get_recommendation(client, defender_client=None, services_and_licenses=None, purview_client=None):

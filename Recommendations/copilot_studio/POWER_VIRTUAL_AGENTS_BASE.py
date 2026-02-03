@@ -1,9 +1,9 @@
 """
 Power Virtual Agents (Base) - Copilot & Agent Adoption Recommendation
 """
-from new_recommendation import new_recommendation
-from friendly_names import get_friendly_sku_name
-from get_power_platform_client import extract_pp_insights_from_client
+from Core.new_recommendation import new_recommendation
+from Core.friendly_names import get_friendly_sku_name
+from Core.get_power_platform_client import extract_pp_insights_from_client
 
 async def get_deployment_status(client, pp_insights=None):
     """Check for basic agent deployment readiness with environment awareness."""

@@ -9,7 +9,7 @@ import json
 import os
 import sys
 from azure.identity.aio import AzureCliCredential
-from spinner import get_timestamp
+from .spinner import get_timestamp
 
 # Power Platform Management API base URL
 # Note: Power Platform has 4 separate API bases:
@@ -297,7 +297,7 @@ async def get_power_platform_client(tenant_id):
     # No preloaded data - fall back to service principal API calls
     try:
         # Import and get Power Platform credential (prefers CLI, falls back to browser)
-        from get_graph_client import get_power_platform_credential
+        from .get_graph_client import get_power_platform_credential
         print(f"[DEBUG] Getting Power Platform credential...")
         credential = get_power_platform_credential()  # NOT async - remove await
         print(f"[DEBUG] Credential obtained: {type(credential)}")
@@ -410,7 +410,7 @@ async def get_power_platform_client(tenant_id):
             # - api.powerplatform.com for apps (uses environment subdomain)
             # - api.bap.microsoft.com for connectors, DLP, AI models (client base URL)
             
-            from spinner import _stdout_lock
+            from .spinner import _stdout_lock
             with _stdout_lock:
                 print(f"[{get_timestamp()}] ℹ️  Fetching Power Platform deployment data...")
                 print(f"[{get_timestamp()}] [INFO]     Power Platform: Requesting 7 resource datasets...")

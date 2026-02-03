@@ -10,7 +10,7 @@ import sys
 import json
 from azure.identity.aio import AzureCliCredential
 from azure.core.exceptions import HttpResponseError
-from spinner import get_timestamp, _stdout_lock
+from .spinner import get_timestamp, _stdout_lock
 
 async def get_defender_client(tenant_id, graph_client):
     """
@@ -464,7 +464,7 @@ async def get_defender_client(tenant_id, graph_client):
     
     try:
         # Get Graph/Security credential (Service Principal)
-        from get_graph_client import get_shared_credential
+        from .get_graph_client import get_shared_credential
         credential = get_shared_credential()
         
         # Time filtering for Defender API

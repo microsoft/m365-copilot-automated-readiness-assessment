@@ -2,7 +2,7 @@
 Processor module for generating and exporting recommendations.
 This module takes the collected service data and handles recommendation aggregation and export.
 """
-from export_recommendations import export_to_csv, export_to_excel, print_recommendations_summary
+from .export_recommendations import export_to_csv, export_to_excel, print_recommendations_summary
 
 
 def collect_all_recommendations(m365_recommendations, entra_info, purview_info, 

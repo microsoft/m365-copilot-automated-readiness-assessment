@@ -1,9 +1,9 @@
 import asyncio
-from get_recommendation import get_recommendation
-from service_categorization import determine_service_type
-from get_purview_client import get_purview_client
+from .get_recommendation import get_recommendation
+from .service_categorization import determine_service_type
+from .get_purview_client import get_purview_client
 import sys
-from spinner import get_timestamp, _stdout_lock
+from .spinner import get_timestamp, _stdout_lock
 from azure.core.exceptions import HttpResponseError
 
 async def fetch_purview_licenses(client):

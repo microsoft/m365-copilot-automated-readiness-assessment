@@ -2,7 +2,7 @@
 DLP Policy Governance - Copilot Extensibility Impact Assessment
 This is a pseudo-feature to assess DLP policy impact on Copilot plugin development
 """
-from new_recommendation import new_recommendation
+from Core.new_recommendation import new_recommendation
 
 async def get_recommendation(sku_name, status="Success", client=None, pp_client=None, pp_insights=None):
     """

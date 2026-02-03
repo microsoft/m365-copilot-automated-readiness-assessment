@@ -1,6 +1,6 @@
 """Service validation logic for orchestrator."""
 
-from spinner import get_timestamp
+from .spinner import get_timestamp
 
 
 def validate_and_prepare_services(services):

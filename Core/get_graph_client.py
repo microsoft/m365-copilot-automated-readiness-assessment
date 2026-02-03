@@ -9,8 +9,8 @@ logging.getLogger('azure.identity').setLevel(logging.ERROR)
 
 # Load .env file into environment variables (no external dependency)
 def _load_env():
-    """Load .env file if it exists"""
-    env_path = os.path.join(os.path.dirname(__file__), '.env')
+    """Load .env file if it exists (in project root, not Core folder)"""
+    env_path = os.path.join(os.path.dirname(__file__), '..', '.env')
     if os.path.exists(env_path):
         with open(env_path, 'r') as f:
             for line in f:
@@ -58,7 +58,7 @@ async def get_graph_client(tenant_id=None, silent=False):
             "Run setup-service-principal.ps1 to create these credentials."
         )
     
-    from spinner import get_timestamp
+    from .spinner import get_timestamp
     if not silent:
         print(f"[{get_timestamp()}] ℹ️     Authenticating with service principal...")
         import sys

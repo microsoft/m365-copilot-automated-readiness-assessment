@@ -1,18 +1,16 @@
 import sys
-import os
 import asyncio
-import threading
 
 # Check dependencies before proceeding
-from check_dependencies import check_dependencies
+from Core.check_dependencies import check_dependencies
 check_dependencies()
 
 # Setup console encoding for Windows
-from console_setup import setup_console_encoding
+from Core.console_setup import setup_console_encoding
 setup_console_encoding()
 
 # Import common utilities
-from spinner import get_timestamp
+from Core.spinner import get_timestamp
 
 if __name__ == "__main__":
     # Show banner FIRST before any imports
@@ -29,8 +27,9 @@ if __name__ == "__main__":
     
     # Import after banner to avoid delay
     from params import TENANT_ID, SERVICES
-    from orchestrator import orchestrate
-    from cli_parser import parse_arguments
+    from Core.orchestrator import orchestrate
+    from Core.cli_parser import parse_arguments
+    from Core.credentials_check import validate_credentials_or_exit
     
     # Parse command-line arguments
     args = parse_arguments(TENANT_ID, SERVICES)
@@ -39,4 +38,18 @@ if __name__ == "__main__":
     tenant_id = args.tenant_id
     services = args.services if args.services else []  # Empty list means all services
     
-    asyncio.run(orchestrate(tenant_id, services))
+    # Check for required credentials before starting orchestration
+    validate_credentials_or_exit(get_timestamp)
+    
+    try:
+        asyncio.run(orchestrate(tenant_id, services))
+    except ValueError as e:
+        # Catch credential-related errors gracefully
+        error_msg = str(e)
+        if "environment variables" in error_msg.lower() or "credentials" in error_msg.lower():
+            print(f"\n[{get_timestamp()}] ❌ Authentication error: {error_msg}")
+            sys.exit(1)
+        raise
+    except Exception as e:
+        print(f"\n[{get_timestamp()}] ❌ Unexpected error: {e}")
+        sys.exit(1)

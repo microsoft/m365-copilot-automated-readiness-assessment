@@ -1,8 +1,8 @@
 """
 Microsoft Teams - Copilot & Agent Adoption Recommendation
 """
-from new_recommendation import new_recommendation
-from friendly_names import get_friendly_sku_name
+from Core.new_recommendation import new_recommendation
+from Core.friendly_names import get_friendly_sku_name
 from datetime import datetime, timedelta
 
 async def get_deployment_status(client):

@@ -1,8 +1,8 @@
 """
 Azure Information Protection Premium P2 - Copilot & Agent Adoption Recommendation
 """
-from new_recommendation import new_recommendation
-from friendly_names import get_friendly_sku_name
+from Core.new_recommendation import new_recommendation
+from Core.friendly_names import get_friendly_sku_name
 
 async def get_recommendation(sku_name, status="Success", client=None, purview_client=None):
     """

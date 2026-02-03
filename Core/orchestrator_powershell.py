@@ -5,7 +5,7 @@ import sys
 import subprocess
 import threading
 import time
-from spinner import get_timestamp, _stdout_lock
+from .spinner import get_timestamp, _stdout_lock
 
 
 async def collect_power_platform_data(tenant_id, run_power_platform, run_copilot_studio):
@@ -23,8 +23,8 @@ async def collect_power_platform_data(tenant_id, run_power_platform, run_copilot
     if os.environ.get("POWER_PLATFORM_DATA_SOURCE"):
         return
     
-    # Launch unified collector
-    ps_script_path = os.path.join(os.path.dirname(__file__), "collect_power_platform_and_copilot_studio_data.ps1")
+    # Launch unified collector (PS1 files are in parent directory, not in Core)
+    ps_script_path = os.path.join(os.path.dirname(__file__), "..", "collect_power_platform_and_copilot_studio_data.ps1")
     
     process = subprocess.Popen(
         ["pwsh", "-File", ps_script_path, "-DataOnly", "-TenantId", tenant_id],
@@ -151,7 +151,8 @@ async def collect_purview_data_via_powershell():
         sys.stdout.flush()
     
     # Invoke collect_purview_data.ps1 in DataOnly mode with real-time stderr streaming
-    ps_script = os.path.join(os.path.dirname(__file__), 'collect_purview_data.ps1')
+    # PS1 files are in parent directory, not in Core
+    ps_script = os.path.join(os.path.dirname(__file__), '..', 'collect_purview_data.ps1')
     process = subprocess.Popen(
         ['pwsh', '-File', ps_script, '-DataOnly'],
         stdout=subprocess.PIPE,

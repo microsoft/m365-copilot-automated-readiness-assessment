@@ -1,8 +1,8 @@
 """
 Common Data Service for Office 365 (Plan 3) - Copilot & Agent Adoption Recommendation
 """
-from new_recommendation import new_recommendation
-from friendly_names import get_friendly_sku_name
+from Core.new_recommendation import new_recommendation
+from Core.friendly_names import get_friendly_sku_name
 
 async def get_deployment_status(client, pp_client=None, pp_insights=None):
     """Check Dataverse capacity and usage for agent scalability planning."""

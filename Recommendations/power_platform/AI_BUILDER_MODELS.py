@@ -2,7 +2,7 @@
 AI Builder Models - Copilot AI Capability Leverage
 This is a pseudo-feature to identify existing AI capabilities that can be leveraged in Copilot scenarios
 """
-from new_recommendation import new_recommendation
+from Core.new_recommendation import new_recommendation
 
 async def get_recommendation(sku_name, status="Success", client=None, pp_client=None, pp_insights=None):
     """
