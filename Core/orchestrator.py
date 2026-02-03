@@ -3,12 +3,12 @@ import sys
 from datetime import datetime
 from azure.identity._exceptions import CredentialUnavailableError
 from azure.core.exceptions import ClientAuthenticationError, HttpResponseError
-from processor import process_and_print_all_information
-from spinner import get_timestamp
-from orchestrator_validation import validate_and_prepare_services
-from orchestrator_setup import load_modules_and_analyze, setup_graph_and_licenses
-from orchestrator_powershell import collect_power_platform_data
-from orchestrator_pipelines import create_pipelines
+from .processor import process_and_print_all_information
+from .spinner import get_timestamp
+from .orchestrator_validation import validate_and_prepare_services
+from .orchestrator_setup import load_modules_and_analyze, setup_graph_and_licenses
+from .orchestrator_powershell import collect_power_platform_data
+from .orchestrator_pipelines import create_pipelines
 
 # Service-specific imports are now lazy-loaded based on SERVICES parameter
 

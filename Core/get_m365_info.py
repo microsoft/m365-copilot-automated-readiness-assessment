@@ -1,9 +1,9 @@
-from get_recommendation import get_recommendation
+from .get_recommendation import get_recommendation
 import sys
-from spinner import get_timestamp, _stdout_lock
+from .spinner import get_timestamp, _stdout_lock
 from azure.core.exceptions import HttpResponseError
-from service_categorization import determine_service_type
-from get_m365_client import extract_m365_insights_from_client
+from .service_categorization import determine_service_type
+from .get_m365_client import extract_m365_insights_from_client
 
 def process_m365_licenses(subscribed_skus):
     """Process M365 license data into structured format"""

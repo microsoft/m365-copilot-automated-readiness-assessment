@@ -2,8 +2,8 @@
 Microsoft Intune for Office 365 - Mobile Device/App Management for Office Apps
 Provides basic MDM/MAM capabilities for phones and tablets accessing Office 365 apps.
 """
-from new_recommendation import new_recommendation
-from friendly_names import get_friendly_sku_name
+from Core.new_recommendation import new_recommendation
+from Core.friendly_names import get_friendly_sku_name
 
 def get_recommendation(sku_name, status="Success", m365_insights=None):
     """

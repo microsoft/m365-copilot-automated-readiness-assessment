@@ -2,8 +2,8 @@
 Entra Identity Protection - Enhanced with Risk Detection Analysis
 Provides license check + risky user detection + risk-based policy recommendations for Copilot security.
 """
-from new_recommendation import new_recommendation
-from friendly_names import get_friendly_sku_name
+from Core.new_recommendation import new_recommendation
+from Core.friendly_names import get_friendly_sku_name
 
 def get_recommendation(sku_name, status="Success", client=None, entra_insights=None):
     """

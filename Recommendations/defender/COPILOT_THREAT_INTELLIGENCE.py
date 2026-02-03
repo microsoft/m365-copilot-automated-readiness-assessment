@@ -3,7 +3,7 @@ Copilot Threat Intelligence - Advanced Security Insights
 Analyzes Advanced Hunting results, threat patterns, and suspicious activities
 specifically related to Copilot/AI usage in the tenant.
 """
-from new_recommendation import new_recommendation
+from Core.new_recommendation import new_recommendation
 
 def get_recommendation(defender_client=None, defender_insights=None):
     """

@@ -1,9 +1,9 @@
 import asyncio
-from get_recommendation import get_recommendation
+from .get_recommendation import get_recommendation
 import sys
-from spinner import get_timestamp, _stdout_lock
+from .spinner import get_timestamp, _stdout_lock
 from azure.core.exceptions import HttpResponseError, ClientAuthenticationError
-from service_categorization import determine_service_type
+from .service_categorization import determine_service_type
 
 async def fetch_copilot_studio_licenses(client):
     """Fetch license data to check if Copilot Studio is licensed"""
@@ -82,7 +82,7 @@ async def get_copilot_studio_info(client, services_and_licenses=None, pp_client=
     
     # PRE-COMPUTE Power Platform insights ONCE (instead of duplicating in every recommendation)
     # This extracts from already-cached pp_client data (no API calls)
-    from get_power_platform_client import extract_pp_insights_from_client
+    from .get_power_platform_client import extract_pp_insights_from_client
     pp_insights = extract_pp_insights_from_client(pp_client) if pp_client else None
     
     # Check for all service plans and create recommendations (blank for Success)

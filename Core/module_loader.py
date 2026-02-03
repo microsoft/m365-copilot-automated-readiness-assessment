@@ -2,7 +2,7 @@
 Module loading progress bar for recommendation modules
 """
 import sys
-from spinner import _stdout_lock
+from .spinner import _stdout_lock
 from datetime import datetime
 
 def get_timestamp():

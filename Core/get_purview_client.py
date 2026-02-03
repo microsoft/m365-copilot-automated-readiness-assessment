@@ -10,8 +10,8 @@ import asyncio
 import json
 import os
 import sys
-from get_graph_client import get_api_client
-from spinner import get_timestamp, _stdout_lock
+from .get_graph_client import get_api_client
+from .spinner import get_timestamp, _stdout_lock
 
 
 # Global variable to store PowerShell data passed via stdin

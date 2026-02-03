@@ -1,9 +1,9 @@
 import asyncio
-from get_recommendation import get_recommendation
-from service_categorization import determine_service_type
+from .get_recommendation import get_recommendation
+from .service_categorization import determine_service_type
 from Recommendations.defender.defender_insights import DefenderInsights
 import sys
-from spinner import get_timestamp, _stdout_lock
+from .spinner import get_timestamp, _stdout_lock
 from azure.core.exceptions import HttpResponseError
 
 async def fetch_defender_licenses(client):

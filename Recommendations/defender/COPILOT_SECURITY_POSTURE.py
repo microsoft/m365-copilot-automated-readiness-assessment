@@ -3,7 +3,7 @@ Copilot Security Posture - Overall Security Assessment
 Analyzes security readiness for Microsoft 365 Copilot deployment based on
 Defender metrics, exposure score, security recommendations, and threat intelligence.
 """
-from new_recommendation import new_recommendation
+from Core.new_recommendation import new_recommendation
 
 def get_recommendation(defender_client=None, purview_client=None, defender_insights=None):
     """

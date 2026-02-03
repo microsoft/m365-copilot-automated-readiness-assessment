@@ -3,8 +3,8 @@ Service plan analysis - shows how many features will be evaluated
 """
 import asyncio
 from pathlib import Path
-from get_graph_client import get_graph_client
-from service_categorization import determine_service_type
+from .get_graph_client import get_graph_client
+from .service_categorization import determine_service_type
 
 async def analyze_service_plans(tenant_id, services_to_run):
     """
@@ -14,7 +14,7 @@ async def analyze_service_plans(tenant_id, services_to_run):
         tenant_id: Azure tenant ID
         services_to_run: List of services to run (from params.py)
     """
-    from spinner import get_timestamp
+    from .spinner import get_timestamp
     import sys
     import time
     
@@ -107,8 +107,8 @@ async def analyze_service_plans(tenant_id, services_to_run):
     run_all = "all" in [s.lower() for s in services_to_run]
     services_to_evaluate = services_to_run if not run_all else list(tenant_plans.keys())
     
-    # Get recommendation file counts
-    base_path = Path(__file__).parent / 'Recommendations'
+    # Get recommendation file counts (Recommendations folder is in project root, not Core)
+    base_path = Path(__file__).parent.parent / 'Recommendations'
     
     print(f"📋 Feature Evaluation Summary:")
     print(f"{'='*80}")

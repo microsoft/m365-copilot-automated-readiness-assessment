@@ -1,8 +1,8 @@
 """Service pipeline functions for orchestrator."""
 
 import os
-from spinner import get_timestamp, _stdout_lock
-from orchestrator_powershell import collect_purview_data_via_powershell
+from .spinner import get_timestamp, _stdout_lock
+from .orchestrator_powershell import collect_purview_data_via_powershell
 
 
 def create_pipelines(client, services_and_licenses, tenant_id, service_config):
@@ -33,7 +33,7 @@ def create_pipelines(client, services_and_licenses, tenant_id, service_config):
         
         try:
             # Gathering phase (has its own progress bar inside get_m365_client)
-            from get_m365_client import get_m365_client
+            from .get_m365_client import get_m365_client
             m365_client = await get_m365_client(client)
             
             # Processing phase with progress bar
@@ -43,7 +43,7 @@ def create_pipelines(client, services_and_licenses, tenant_id, service_config):
                 sys.stdout.write(f'\r[{get_timestamp()}]   M365 Data Processing    [░░░░░░░░░░░░░░░░░░░░]   0%')
                 sys.stdout.flush()
             
-            from get_m365_info import get_m365_info
+            from .get_m365_info import get_m365_info
             result = await get_m365_info(client, services_and_licenses, m365_client)
             
             with _stdout_lock:
@@ -64,7 +64,7 @@ def create_pipelines(client, services_and_licenses, tenant_id, service_config):
         
         try:
             # Gathering phase (has its own progress bar inside get_entra_client)
-            from get_entra_client import get_entra_client
+            from .get_entra_client import get_entra_client
             entra_client = await get_entra_client(client, tenant_id)
             
             # Processing phase with progress bar
@@ -74,7 +74,7 @@ def create_pipelines(client, services_and_licenses, tenant_id, service_config):
                 sys.stdout.write(f'\r[{get_timestamp()}]   Entra Data Processing   [░░░░░░░░░░░░░░░░░░░░]   0%')
                 sys.stdout.flush()
             
-            from get_entra_info import get_entra_info
+            from .get_entra_info import get_entra_info
             result = await get_entra_info(client, services_and_licenses, entra_client)
             
             with _stdout_lock:
@@ -107,7 +107,7 @@ def create_pipelines(client, services_and_licenses, tenant_id, service_config):
                     sys.stdout.write(f'\r[{get_timestamp()}]   Purview Data Gathering  [░░░░░░░░░░░░░░░░░░░░]   0%')
                     sys.stdout.flush()
             
-            from get_purview_client import get_purview_client
+            from .get_purview_client import get_purview_client
             purview_client = await get_purview_client(client)
             
             if purview_data_source == 'stdin':
@@ -125,7 +125,7 @@ def create_pipelines(client, services_and_licenses, tenant_id, service_config):
                 sys.stdout.write(f'\r[{get_timestamp()}]   Purview Data Processing [░░░░░░░░░░░░░░░░░░░░]   0%')
                 sys.stdout.flush()
             
-            from get_purview_info import get_purview_info
+            from .get_purview_info import get_purview_info
             result = await get_purview_info(client, services_and_licenses, purview_client)
             
             with _stdout_lock:
@@ -146,7 +146,7 @@ def create_pipelines(client, services_and_licenses, tenant_id, service_config):
             # Gathering phase
             import sys
             
-            from get_defender_client import get_defender_client
+            from .get_defender_client import get_defender_client
             defender_client = await get_defender_client(tenant_id, client)
             
             if defender_client is None:
@@ -157,7 +157,7 @@ def create_pipelines(client, services_and_licenses, tenant_id, service_config):
                 sys.stdout.write(f'[{get_timestamp()}]   Defender Data Processing[░░░░░░░░░░░░░░░░░░░░]   0%')
                 sys.stdout.flush()
             
-            from get_defender_info import get_defender_info
+            from .get_defender_info import get_defender_info
             purview_client_for_defender = None
             result = await get_defender_info(client, defender_client, services_and_licenses, purview_client_for_defender)
             
@@ -187,7 +187,7 @@ def create_pipelines(client, services_and_licenses, tenant_id, service_config):
                 sys.stdout.write(f'\r[{get_timestamp()}]   Power Platform Gathering[░░░░░░░░░░░░░░░░░░░░]   0%')
                 sys.stdout.flush()
             
-            from get_power_platform_client import get_power_platform_client
+            from .get_power_platform_client import get_power_platform_client
             pp_client = await get_power_platform_client(tenant_id)
             
             with _stdout_lock:
@@ -205,7 +205,7 @@ def create_pipelines(client, services_and_licenses, tenant_id, service_config):
                 sys.stdout.write(f'\r[{get_timestamp()}]   Power Platform Processing[░░░░░░░░░░░░░░░░░░░░]   0%')
                 sys.stdout.flush()
             
-            from get_power_platform_info import get_power_platform_info
+            from .get_power_platform_info import get_power_platform_info
             result = await get_power_platform_info(client, services_and_licenses, pp_client)
             
             with _stdout_lock:
@@ -234,7 +234,7 @@ def create_pipelines(client, services_and_licenses, tenant_id, service_config):
                 sys.stdout.write(f'\r[{get_timestamp()}]   Copilot Studio Gathering[░░░░░░░░░░░░░░░░░░░░]   0%')
                 sys.stdout.flush()
             
-            from get_power_platform_client import get_power_platform_client
+            from .get_power_platform_client import get_power_platform_client
             pp_client = await get_power_platform_client(tenant_id)
             
             with _stdout_lock:
@@ -249,7 +249,7 @@ def create_pipelines(client, services_and_licenses, tenant_id, service_config):
                 sys.stdout.write(f'\r[{get_timestamp()}]   Copilot Studio Processing[░░░░░░░░░░░░░░░░░░░░]   0%')
                 sys.stdout.flush()
             
-            from get_copilot_studio_info import get_copilot_studio_info
+            from .get_copilot_studio_info import get_copilot_studio_info
             result = await get_copilot_studio_info(client, services_and_licenses, pp_client)
             
             with _stdout_lock:

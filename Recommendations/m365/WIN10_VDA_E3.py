@@ -1,8 +1,8 @@
 """
 Windows 10/11 Enterprise E3 - Copilot & Agent Adoption Recommendation
 """
-from new_recommendation import new_recommendation
-from friendly_names import get_friendly_sku_name
+from Core.new_recommendation import new_recommendation
+from Core.friendly_names import get_friendly_sku_name
 
 def get_recommendation(sku_name, status="Success", m365_insights=None):
     """

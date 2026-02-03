@@ -1,8 +1,8 @@
 """
 Project for Office 365 (Plan 1) - Copilot & Agent Adoption Recommendation
 """
-from new_recommendation import new_recommendation
-from friendly_names import get_friendly_sku_name
+from Core.new_recommendation import new_recommendation
+from Core.friendly_names import get_friendly_sku_name
 
 async def get_deployment_status(client):
     """Check for project management usage and opportunities."""

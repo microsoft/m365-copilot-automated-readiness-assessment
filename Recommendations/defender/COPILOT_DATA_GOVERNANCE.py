@@ -3,7 +3,7 @@ Copilot Data Governance - Compliance & Protection Assessment
 Evaluates data governance readiness for Copilot using Purview policies,
 DLP rules, sensitivity labels, and data access controls.
 """
-from new_recommendation import new_recommendation
+from Core.new_recommendation import new_recommendation
 
 def get_recommendation(purview_client=None, defender_client=None, defender_insights=None):
     """
