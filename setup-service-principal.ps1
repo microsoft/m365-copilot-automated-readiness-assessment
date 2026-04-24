@@ -67,7 +67,8 @@ Write-Info "Browser will open for authentication (requires Global Admin)"
 
 try {
     # Use Process scope to maintain authentication context throughout script
-    Connect-MgGraph -Scopes "Application.ReadWrite.All", "Directory.Read.All", "RoleManagement.ReadWrite.Directory", "AppRoleAssignment.ReadWrite.All" -ContextScope Process -NoWelcome -ErrorAction Stop
+    # Modified line to fix authentication failure
+    Connect-MgGraph -Scopes "Application.ReadWrite.All", "Directory.Read.All", "RoleManagement.ReadWrite.Directory", "AppRoleAssignment.ReadWrite.All" -ContextScope Process -NoWelcome -ErrorAction Stop -UseDeviceAuthentication
     $context = Get-MgContext
     
     if (-not $context -or -not $context.TenantId) {
