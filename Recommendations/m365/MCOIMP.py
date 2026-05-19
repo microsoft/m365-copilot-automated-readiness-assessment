@@ -68,7 +68,7 @@ def get_recommendation(sku_name, status="Success", m365_insights=None):
                 service="M365",
                 feature=feature_name,
                 observation=f"Teams infrastructure exists: {teams_active_users:,} users already on Teams. Remaining Skype users block Copilot adoption - immediate migration required.",
-                recommendation="Accelerate remaining Skype for Business to Teams migration immediately. With {teams_active_users:,} users already on Teams, migration infrastructure is proven. Complete migration to enable organization-wide Copilot access for meeting intelligence and AI assistance.",
+                recommendation=f"Accelerate remaining Skype for Business to Teams migration immediately. With {teams_active_users:,} users already on Teams, migration infrastructure is proven. Complete migration to enable organization-wide Copilot access for meeting intelligence and AI assistance.",
                 link_text="Complete Teams Migration",
                 link_url="https://learn.microsoft.com/microsoftteams/skype-for-business-online-retirement/",
                 priority="High",

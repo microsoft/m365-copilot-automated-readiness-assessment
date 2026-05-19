@@ -67,7 +67,7 @@ def get_recommendation(sku_name, status="Success", m365_insights=None):
                 service="M365",
                 feature=feature_name,
                 observation=f"Teams infrastructure exists: {teams_active_users:,} users already on Teams. Kaizala users missing AI features available to Teams users - immediate migration recommended.",
-                recommendation="Accelerate Kaizala to Teams migration immediately. With {teams_active_users:,} users already on Teams, infrastructure and adoption patterns are established. Migrate remaining Kaizala users to eliminate capability gap and enable AI-powered frontline collaboration.",
+                recommendation=f"Accelerate Kaizala to Teams migration immediately. With {teams_active_users:,} users already on Teams, infrastructure and adoption patterns are established. Migrate remaining Kaizala users to eliminate capability gap and enable AI-powered frontline collaboration.",
                 link_text="Urgent: Migrate to Teams",
                 link_url="https://learn.microsoft.com/microsoft-365/frontline/",
                 priority="High",

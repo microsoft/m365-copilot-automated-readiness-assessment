@@ -56,7 +56,7 @@ def get_recommendation(sku_name, status="Success", m365_insights=None):
                 service="M365",
                 feature=feature_name,
                 observation=f"Hybrid workforce: {teams_active_users:,} Teams users likely need office coordination for effective in-person collaboration.",
-                recommendation="Deploy Places for hybrid work coordination with your {teams_active_users:,} Teams users. Enable agents that answer presence questions, coordinate team office days, and suggest optimal in-person meeting times. Monitor office utilization patterns to optimize space and facilitate spontaneous collaboration.",
+                recommendation=f"Deploy Places for hybrid work coordination with your {teams_active_users:,} Teams users. Enable agents that answer presence questions, coordinate team office days, and suggest optimal in-person meeting times. Monitor office utilization patterns to optimize space and facilitate spontaneous collaboration.",
                 link_text="Places Deployment",
                 link_url="https://learn.microsoft.com/microsoft-365/places/",
                 priority="Low",

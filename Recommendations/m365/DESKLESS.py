@@ -64,7 +64,7 @@ def get_recommendation(sku_name, status="Success", m365_insights=None):
                 service="M365",
                 feature=feature_name,
                 observation=f"URGENT: {teams_active_users:,} users on Teams but StaffHub still licensed. StaffHub retired 4+ years ago - critical migration gap for AI-powered scheduling.",
-                recommendation="Immediately migrate to Teams Shifts. With {teams_active_users:,} Teams users, infrastructure exists for modern frontline management. Shifts enables AI schedule optimization, Copilot shift coverage assistance, and integration with Teams chat for shift-related communication. Every day on retired StaffHub delays frontline workforce AI capabilities.",
+                recommendation=f"Immediately migrate to Teams Shifts. With {teams_active_users:,} Teams users, infrastructure exists for modern frontline management. Shifts enables AI schedule optimization, Copilot shift coverage assistance, and integration with Teams chat for shift-related communication. Every day on retired StaffHub delays frontline workforce AI capabilities.",
                 link_text="Immediate Shifts Migration",
                 link_url="https://learn.microsoft.com/microsoft-365/frontline/shifts-for-teams-landing-page/",
                 priority="High",

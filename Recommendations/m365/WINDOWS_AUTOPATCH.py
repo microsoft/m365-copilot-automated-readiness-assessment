@@ -62,7 +62,7 @@ def get_recommendation(sku_name, status="Success", m365_insights=None):
                 service="M365",
                 feature=feature_name,
                 observation=f"Organization scale: {total_active_users:,} users indicate significant update management overhead. Autopatch automation valuable.",
-                recommendation="Leverage Windows Autopatch to eliminate manual patching effort for {total_active_users:,} devices. Autopatch automatically deploys Windows and M365 updates ensuring Copilot feature parity across organization without IT intervention. Calculate time savings: manual patching requires testing, deployment planning, and rollout coordination - Autopatch handles this automatically. Reduces version fragmentation causing Copilot compatibility issues.",
+                recommendation=f"Leverage Windows Autopatch to eliminate manual patching effort for {total_active_users:,} devices. Autopatch automatically deploys Windows and M365 updates ensuring Copilot feature parity across organization without IT intervention. Calculate time savings: manual patching requires testing, deployment planning, and rollout coordination - Autopatch handles this automatically. Reduces version fragmentation causing Copilot compatibility issues.",
                 link_text="Autopatch Benefits",
                 link_url="https://learn.microsoft.com/windows/deployment/windows-autopatch/",
                 priority="Low",
