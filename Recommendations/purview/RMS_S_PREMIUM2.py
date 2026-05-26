@@ -61,7 +61,7 @@ async def get_recommendation(sku_name, status="Success", client=None, purview_cl
                     recommendation="CRITICAL: Enable Azure Rights Management immediately to unlock Premium P2's advanced automatic classification and machine learning capabilities. Without Azure RMS, you cannot use trainable classifiers, automatic labeling with encryption, or advanced analytics - effectively wasting the Premium P2 investment. To enable: Connect to Exchange Online PowerShell and run 'Set-IRMConfiguration -AzureRMSLicensingEnabled $true'. Once enabled, Premium P2 provides: 1) Trainable classifiers that detect sensitive content in Copilot outputs using machine learning, 2) Automatic encryption of AI-generated documents containing confidential patterns, 3) Content scanning to discover unprotected files Copilot might access, 4) Advanced analytics showing how Copilot interacts with protected content. Enable Azure RMS NOW to protect against data leaks through AI-assisted content discovery. Use Get-IRMConfiguration to verify activation.",
                     link_text="Enable Azure Rights Management",
                     link_url="https://learn.microsoft.com/azure/information-protection/activate-service",
-                    priority="Critical",
+                    priority="High",
                     status="Success"
                 )
                 deployment_recs.append(deployment_rec)

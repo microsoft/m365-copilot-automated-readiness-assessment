@@ -125,10 +125,13 @@ async def get_purview_info(client, services_and_licenses=None, purview_client=No
                 else:
                     recommendations.append(rec)
     
-    # Run all async recommendations in parallel
+    # Run all async recommendations in parallel; return_exceptions=True prevents one
+    # failing task from abandoning all other in-flight recommendations.
     if async_tasks:
-        results = await asyncio.gather(*async_tasks)
+        results = await asyncio.gather(*async_tasks, return_exceptions=True)
         for result in results:
+            if isinstance(result, BaseException):
+                continue
             if isinstance(result, list):
                 recommendations.extend(result)
             else:

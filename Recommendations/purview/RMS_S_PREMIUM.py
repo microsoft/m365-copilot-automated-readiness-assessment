@@ -61,7 +61,7 @@ async def get_recommendation(sku_name, status="Success", client=None, purview_cl
                     recommendation="CRITICAL: Enable Azure Rights Management immediately to activate document encryption capabilities. Without Azure RMS enabled, the AIP Premium P1 license cannot encrypt documents, apply usage rights, or protect sensitive content accessed by Copilot. To enable: Connect to Exchange Online PowerShell and run 'Set-IRMConfiguration -AzureRMSLicensingEnabled $true'. Once enabled, configure sensitivity labels to automatically encrypt: 1) Documents containing financial data that Copilot processes, 2) Emails with customer PII summarized by AI, 3) Confidential files accessed through Copilot searches, 4) AI-generated content containing trade secrets. Azure RMS ensures encrypted content remains protected even when Copilot makes it more discoverable. Use Get-IRMConfiguration to verify activation.",
                     link_text="Enable Azure Rights Management",
                     link_url="https://learn.microsoft.com/azure/information-protection/activate-service",
-                    priority="Critical",
+                    priority="High",
                     status="Success"
                 )
                 deployment_recs.append(deployment_rec)

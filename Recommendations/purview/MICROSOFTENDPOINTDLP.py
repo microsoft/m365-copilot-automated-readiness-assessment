@@ -75,7 +75,7 @@ async def get_recommendation(sku_name, status="Success", client=None, purview_cl
                     recommendation="Create Endpoint DLP policies BEFORE users start exfiltrating Copilot-generated sensitive data. Deploy policies to: 1) Block copying confidential Copilot responses to personal email, USB drives, or unauthorized cloud storage, 2) Prevent users from taking screenshots of sensitive AI outputs, 3) Restrict printing financial reports or customer data that Copilot aggregates, 4) Monitor file transfers when users export Copilot summaries to personal devices. Start with high-value content types (SSN, credit card numbers, financial data, customer PII) and expand to trade secrets and intellectual property. Configure in Purview compliance portal > Data loss prevention > Policies. Use Get-DlpCompliancePolicy to verify deployment.",
                     link_text="Deploy Endpoint DLP",
                     link_url="https://learn.microsoft.com/purview/endpoint-dlp-getting-started",
-                    priority="Critical",
+                    priority="High",
                     status="Success"
                 )
                 deployment_recs.append(deployment_rec)
