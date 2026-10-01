@@ -122,7 +122,7 @@ async def get_purview_info(client, services_and_licenses=None, purview_client=No
                 # Handle sync recommendations immediately
                 if isinstance(rec, list):
                     recommendations.extend(rec)
-                else:
+                elif rec is not None:
                     recommendations.append(rec)
     
     # Run all async recommendations in parallel
@@ -131,7 +131,7 @@ async def get_purview_info(client, services_and_licenses=None, purview_client=No
         for result in results:
             if isinstance(result, list):
                 recommendations.extend(result)
-            else:
+            elif result is not None:
                 recommendations.append(result)
     
     # Build response with deployment data if available
