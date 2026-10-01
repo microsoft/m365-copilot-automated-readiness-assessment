@@ -138,7 +138,7 @@ async def get_entra_info(client, services_and_licenses=None, entra_client=None):
             # Handle both single recommendations and lists
             if isinstance(rec, list):
                 recommendations.extend(rec)
-            else:
+            elif rec is not None:
                 recommendations.append(rec)
     
     # Global Secure Access (Entra Internet Access) doesn't have a service plan
@@ -161,7 +161,7 @@ async def get_entra_info(client, services_and_licenses=None, entra_client=None):
             # Handle both single recommendations and lists
             if isinstance(gsa_recs, list):
                 recommendations.extend(gsa_recs)
-            else:
+            elif gsa_recs is not None:
                 recommendations.append(gsa_recs)
     
     # Global Secure Access (Entra Private Access) - also API-only
@@ -179,7 +179,7 @@ async def get_entra_info(client, services_and_licenses=None, entra_client=None):
             
             if isinstance(private_recs, list):
                 recommendations.extend(private_recs)
-            else:
+            elif private_recs is not None:
                 recommendations.append(private_recs)
             
             # Conditional Access for Private Access (only if Private Access is configured)
@@ -194,7 +194,7 @@ async def get_entra_info(client, services_and_licenses=None, entra_client=None):
                 
                 if isinstance(private_ca_rec, list):
                     recommendations.extend(private_ca_rec)
-                else:
+                elif private_ca_rec is not None:
                     recommendations.append(private_ca_rec)
     
     # Frontline Internet Access - only invoke if network access shows frontline capability
@@ -213,7 +213,7 @@ async def get_entra_info(client, services_and_licenses=None, entra_client=None):
             
             if isinstance(frontline_rec, list):
                 recommendations.extend(frontline_rec)
-            else:
+            elif frontline_rec is not None:
                 recommendations.append(frontline_rec)
     
     entra_info['recommendations'] = recommendations

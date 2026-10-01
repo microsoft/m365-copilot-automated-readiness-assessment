@@ -17,6 +17,14 @@ def collect_all_recommendations(m365_recommendations, entra_info, purview_info,
     all_recommendations.extend(power_platform_info.get('recommendations', []))
     all_recommendations.extend(copilot_studio_info.get('recommendations', []))
     all_recommendations.extend(a365_info.get('recommendations', []))
+
+    # Final safety net: a recommendation module that unexpectedly falls through
+    # without an explicit return (as MIP_S_CLP1 once did) would silently append
+    # None here. Drop any such entries so export never crashes on them, even if
+    # a future module reintroduces that bug (the individual append sites above
+    # already guard against this too - this is defense in depth).
+    all_recommendations = [rec for rec in all_recommendations if rec is not None]
+
     return all_recommendations
 
 

@@ -144,6 +144,33 @@ async def get_recommendation(sku_name, status="Success", client=None, purview_cl
                     status="Success"
                 )
                 deployment_recs.append(deployment_rec)
+        elif labels_data.get('permission_denied', False):
+            # Fetch failed (insufficient permissions, incomplete Security & Compliance
+            # sign-in, or no PowerShell collection at all) - inconclusive, so this is an
+            # observation rather than an actionable recommendation.
+            deployment_rec = new_recommendation(
+                service="Purview",
+                feature=f"{feature_name} - Label Deployment",
+                observation="Sensitivity label deployment status could not be verified via PowerShell (insufficient permissions or incomplete Security & Compliance sign-in)",
+                recommendation="",
+                link_text="Manage Sensitivity Labels",
+                link_url="https://learn.microsoft.com/purview/create-sensitivity-labels",
+                status="Unable to Verify"
+            )
+            deployment_recs.append(deployment_rec)
+        else:
+            # Confirmed via PowerShell that zero sensitivity labels are configured.
+            deployment_rec = new_recommendation(
+                service="Purview",
+                feature=f"{feature_name} - Label Deployment",
+                observation="Information Protection license active but ZERO sensitivity labels configured - no content classification",
+                recommendation="Deploy sensitivity labels IMMEDIATELY before Copilot rollout. Create 4 baseline labels: 1) Public (marketing, public docs), 2) General (default for all internal content), 3) Confidential (customer data, contracts, roadmaps), 4) Highly Confidential (financials, M&A, HR). Without labels, Copilot has no protection boundaries - all content treated equally. Configure in Purview > Information protection > Labels, publish to all users.",
+                link_text="Create Sensitivity Labels",
+                link_url="https://learn.microsoft.com/purview/create-sensitivity-labels",
+                priority="High",
+                status="Success"
+            )
+            deployment_recs.append(deployment_rec)
     
     # Fallback to Graph API if PowerShell data unavailable
     elif status == "Success" and client:
@@ -211,4 +238,6 @@ async def get_recommendation(sku_name, status="Success", client=None, purview_cl
     if deployment_recs:
         return [license_rec] + deployment_recs
     
-    # If license not active or no data, return only license recommendation
+    # If license not active or no deployment data was produced above, still return the
+    # license-status recommendation instead of falling through to an implicit None.
+    return [license_rec]

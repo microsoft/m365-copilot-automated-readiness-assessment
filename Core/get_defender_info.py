@@ -147,7 +147,7 @@ async def get_defender_info(client, defender_client=None, services_and_licenses=
                 # Handle sync recommendations immediately
                 if isinstance(rec, list):
                     recommendations.extend(rec)
-                else:
+                elif rec is not None:
                     recommendations.append(rec)
     
     # Run all async recommendations in parallel
@@ -156,7 +156,7 @@ async def get_defender_info(client, defender_client=None, services_and_licenses=
         for result in results:
             if isinstance(result, list):
                 recommendations.extend(result)
-            else:
+            elif result is not None:
                 recommendations.append(result)
     
     # ========== COPILOT-SPECIFIC RECOMMENDATIONS ==========

@@ -99,6 +99,10 @@ async def get_purview_client(tenant_id):
     if purview_data:
         dlp_data = safe_get(purview_data, 'dlp_policies', 'policies')
         labels_data = safe_get(purview_data, 'sensitivity_labels', 'labels')
+        # Keep the full sensitivity_labels dict too (not just the 'labels' list) so the
+        # 'permission_denied' flag set by collect_purview_data.ps1 on a Get-Label failure
+        # isn't lost - it lets callers distinguish "confirmed zero labels" from "fetch failed".
+        labels_metadata = safe_get(purview_data, 'sensitivity_labels')
         retention_data = safe_get(purview_data, 'retention_policies', 'policies')
         label_policies_data = safe_get(purview_data, 'label_policies', 'policies')
         insider_risk_data = safe_get(purview_data, 'insider_risk_policies', 'policies')
@@ -113,6 +117,9 @@ async def get_purview_client(tenant_id):
         dlp_data = labels_data = retention_data = label_policies_data = []
         insider_risk_data = comm_comp_data = ib_data = ediscovery_data = []
         org_config_data = irm_config_data = audit_config_data = {}
+        # No collection ran at all, so we can't confirm labels are truly absent - treat as
+        # unverifiable rather than a confirmed zero.
+        labels_metadata = {'permission_denied': True}
     
     # Fetch data from all endpoints in parallel
     async def fetch_retention_labels():
@@ -129,9 +136,16 @@ async def get_purview_client(tenant_id):
             return {
                 'available': True,
                 'total_labels': len(labels_data) if isinstance(labels_data, list) else 0,
-                'labels': labels_data
+                'labels': labels_data,
+                'permission_denied': False
             }
-        return {'available': False, 'total_labels': 0}
+        # Empty/missing labels: distinguish "confirmed zero labels" from "fetch failed"
+        # using the permission_denied flag preserved from the PowerShell output.
+        return {
+            'available': False,
+            'total_labels': 0,
+            'permission_denied': bool(labels_metadata.get('permission_denied', False))
+        }
     
     async def fetch_label_policies():
         if label_policies_data:

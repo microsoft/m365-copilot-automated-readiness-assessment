@@ -100,7 +100,7 @@ async def get_m365_info(client, services_and_licenses=None, m365_client=None):
                 # Handle sync recommendations immediately
                 if isinstance(rec, list):
                     recommendations.extend(rec)
-                else:
+                elif rec is not None:
                     recommendations.append(rec)
     
     # Run all async recommendations in parallel
@@ -109,7 +109,7 @@ async def get_m365_info(client, services_and_licenses=None, m365_client=None):
         for result in results:
             if isinstance(result, list):
                 recommendations.extend(result)
-            else:
+            elif result is not None:
                 recommendations.append(result)
     
     return license_info, recommendations

@@ -138,7 +138,7 @@ async def get_power_platform_info(client, services_and_licenses=None, pp_client=
                 # Handle sync recommendations immediately
                 if isinstance(rec, list):
                     recommendations.extend(rec)
-                else:
+                elif rec is not None:
                     recommendations.append(rec)
     
     # Run all async recommendations in parallel
@@ -147,7 +147,7 @@ async def get_power_platform_info(client, services_and_licenses=None, pp_client=
         for result in results:
             if isinstance(result, list):
                 recommendations.extend(result)
-            else:
+            elif result is not None:
                 recommendations.append(result)
     
     # Check if pp_client is available for environment data and pseudo-features
