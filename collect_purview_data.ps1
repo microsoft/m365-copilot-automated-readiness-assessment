@@ -14,12 +14,12 @@ if (-not (Test-RequiredModules -ScriptType "Purview")) {
 
 # Helper function to write output only in interactive mode
 function Write-Progress {
-    param([string]$Message, [string]$Color = "White", [switch]$NoNewline)
+    param([string]$Message, [string]$ForegroundColor = "White", [switch]$NoNewline)
     if (-not $DataOnly) {
         if ($NoNewline) {
-            Write-Progress $Message -ForegroundColor $Color -NoNewline
+            Write-Host $Message -ForegroundColor $ForegroundColor -NoNewline
         } else {
-            Write-Progress $Message -ForegroundColor $Color
+            Write-Host $Message -ForegroundColor $ForegroundColor
         }
     }
 }
