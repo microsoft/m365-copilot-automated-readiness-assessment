@@ -79,7 +79,7 @@ async def get_recommendation(sku_name, status="Success", client=None, purview_cl
                     recommendation=f"Immediately create and publish sensitivity labels - Premium's auto-labeling is useless without labels to apply. Deploy 4 baseline labels: 'Public', 'General', 'Confidential', 'Highly Confidential'. Then configure auto-labeling policies for Copilot outputs: detect financial patterns (credit cards, account numbers) → auto-apply 'Confidential', detect PII (SSN, passport numbers) → 'Highly Confidential', use trainable classifiers for industry-specific content. Without labels, Premium cannot automatically protect Copilot-generated content containing sensitive data. This creates significant data leak risk as users rely on AI to process confidential information. Deploy labels NOW. Use Get-Label to verify setup.",
                     link_text="Create Labels for Auto-Classification",
                     link_url="https://learn.microsoft.com/purview/create-sensitivity-labels",
-                    priority="Critical",
+                    priority="High",
                     status="Success"
                 )
                 deployment_recs.append(deployment_rec)
