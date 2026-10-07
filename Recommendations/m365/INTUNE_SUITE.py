@@ -56,7 +56,7 @@ def get_recommendation(sku_name, status="Success", m365_insights=None):
                 service="M365",
                 feature=feature_name,
                 observation=f"Device management scale: {total_active_users:,} users require comprehensive endpoint security for Copilot access.",
-                recommendation="Deploy Intune Suite advanced features for your {total_active_users:,} users: endpoint analytics for Copilot performance monitoring, remote help for AI troubleshooting, privilege management for secure access. Ensure all devices meet compliance baselines before Copilot enablement.",
+                recommendation=f"Deploy Intune Suite advanced features for your {total_active_users:,} users: endpoint analytics for Copilot performance monitoring, remote help for AI troubleshooting, privilege management for secure access. Ensure all devices meet compliance baselines before Copilot enablement.",
                 link_text="Intune Suite Deployment",
                 link_url="https://learn.microsoft.com/mem/intune/",
                 priority="Medium",

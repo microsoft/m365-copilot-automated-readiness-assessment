@@ -63,7 +63,7 @@ def get_recommendation(sku_name, status="Success", m365_insights=None):
                 service="M365",
                 feature=feature_name,
                 observation=f"Heavy meeting load: {teams_total_meetings:,} meetings suggest video fatigue risk. Avatar-based meetings offer alternative.",
-                recommendation="Pilot Mesh avatars with meeting-heavy teams experiencing video fatigue. With {teams_total_meetings:,} meetings, users report exhaustion from constant on-camera presence. Avatars maintain engagement without video burden, particularly for internal collaboration. Test with teams doing daily standups or long working sessions. Early adoption positions organization for spatial computing future where Copilot assists in 3D environments.",
+                recommendation=f"Pilot Mesh avatars with meeting-heavy teams experiencing video fatigue. With {teams_total_meetings:,} meetings, users report exhaustion from constant on-camera presence. Avatars maintain engagement without video burden, particularly for internal collaboration. Test with teams doing daily standups or long working sessions. Early adoption positions organization for spatial computing future where Copilot assists in 3D environments.",
                 link_text="Mesh Avatar Pilot",
                 link_url="https://learn.microsoft.com/mesh/",
                 priority="Low",

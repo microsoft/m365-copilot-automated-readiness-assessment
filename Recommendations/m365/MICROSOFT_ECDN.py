@@ -63,7 +63,7 @@ def get_recommendation(sku_name, status="Success", m365_insights=None):
                 service="M365",
                 feature=feature_name,
                 observation=f"Organization scale: {total_active_users:,} users indicate potential for large all-hands events. eCDN optimizes bandwidth.",
-                recommendation="Configure eCDN for company-wide Teams live events. With {total_active_users:,} users, town halls and all-hands meetings can overwhelm network bandwidth if all stream simultaneously. eCDN's peer-to-peer delivery reduces WAN congestion, ensuring smooth video for Copilot transcription. Test with next large event - monitor bandwidth savings and attendee experience quality.",
+                recommendation=f"Configure eCDN for company-wide Teams live events. With {total_active_users:,} users, town halls and all-hands meetings can overwhelm network bandwidth if all stream simultaneously. eCDN's peer-to-peer delivery reduces WAN congestion, ensuring smooth video for Copilot transcription. Test with next large event - monitor bandwidth savings and attendee experience quality.",
                 link_text="eCDN Configuration",
                 link_url="https://learn.microsoft.com/ecdn/",
                 priority="Low",

@@ -65,7 +65,7 @@ def get_recommendation(sku_name, status="Success", m365_insights=None):
                 service="M365",
                 feature=feature_name,
                 observation=f"Rich content foundation: {sharepoint_total_files:,} files and {email_active_users:,} email users create massive Copilot opportunity. Apps can leverage this organizational knowledge.",
-                recommendation="Deploy Copilot in Apps training focused on high-value scenarios: Use Word Copilot to draft proposals by referencing existing {sharepoint_total_files:,} files, Excel Copilot to analyze data patterns, Outlook Copilot to manage {email_active_users:,} users' inboxes efficiently, PowerPoint Copilot to create presentations from meeting notes. Measure time savings in document creation and email management.",
+                recommendation=f"Deploy Copilot in Apps training focused on high-value scenarios: Use Word Copilot to draft proposals by referencing existing {sharepoint_total_files:,} files, Excel Copilot to analyze data patterns, Outlook Copilot to manage {email_active_users:,} users' inboxes efficiently, PowerPoint Copilot to create presentations from meeting notes. Measure time savings in document creation and email management.",
                 link_text="Deploy Copilot in Apps",
                 link_url="https://learn.microsoft.com/microsoft-365-copilot/microsoft-365-copilot-setup",
                 priority="High",
