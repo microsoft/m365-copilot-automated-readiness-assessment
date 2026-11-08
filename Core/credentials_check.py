@@ -17,7 +17,7 @@ def load_env_file(base_path=None):
     
     env_path = os.path.join(base_path, '.env')
     if os.path.exists(env_path):
-        with open(env_path, 'r') as f:
+        with open(env_path, 'r', encoding="utf-8") as f:
             for line in f:
                 line = line.strip()
                 if line and not line.startswith('#') and '=' in line:
